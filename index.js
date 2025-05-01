@@ -45,6 +45,18 @@ app.get('/books/:id', (req, res) => {
   return res.send(createBookTemplate(book))
 })
 
+app.delete('/books/:id', (req, res) => {
+  const { id } = req.params
+
+  const bookIndex = BOOKS.find((book) => book.id === id)
+
+  if (bookIndex !== -1) {
+    BOOKS.splice(bookIndex, 1)
+  }
+
+  return res.send(``)
+})
+
 app.listen(PORT, () => {
   console.log('SERVER RUNNING')
 })
