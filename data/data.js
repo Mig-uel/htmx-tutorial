@@ -1,6 +1,6 @@
-const BOOKS_DATA = [
+const BOOKS = [
   { id: '1', title: 'The Final Empire', author: 'Brandon Sanderson' },
   { id: '2', title: 'The Way of Kings', author: 'Brandon Sanderson' },
 ]
 
-export default BOOKS_DATA
+export default BOOKS
