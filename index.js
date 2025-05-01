@@ -2,6 +2,7 @@ import express from 'express'
 import createHomepageTemplate from './views/index.js'
 import createBooksListTemplate from './views/books-list.js'
 import BOOKS from './data/data.js'
+import createBookTemplate from './views/book.js'
 
 const PORT = 3000
 const app = express()
@@ -23,13 +24,25 @@ app.post('/books', (req, res) => {
   const { title, author } = req.body
   const id = crypto.randomUUID()
 
-  BOOKS.push({
+  const book = {
     id,
     title,
     author,
-  })
+  }
 
-  return res.send(`<li>${title}, ${author}</li>`)
+  BOOKS.push(book)
+
+  return res.send(createBookTemplate(book))
+})
+
+app.get('/books/:id', (req, res) => {
+  const { id } = req.params
+
+  const book = BOOKS.find((book) => book.id === id)
+
+  if (!book) return res.send()
+
+  return res.send(createBookTemplate(book))
 })
 
 app.listen(PORT, () => {
