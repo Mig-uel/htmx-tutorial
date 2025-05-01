@@ -21,9 +21,9 @@ const createHomepageTemplate = () => /*html*/ `
         <h2>What do you want to read?</h2>
         
         <form>
-          <input type="text" name="title" placeholder="title">
+          <input type="text" name="title" placeholder="title" required>
 
-          <input type="text" name="author" placeholder="author">
+          <input type="text" name="author" placeholder="author" required>
 
           <button hx-post="/books" hx-target=".book-list ul" hx-swap="beforeend">Add Book</button>
         </form>
