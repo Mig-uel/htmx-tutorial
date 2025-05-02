@@ -3,6 +3,7 @@ import createHomepageTemplate from './views/index.js'
 import createBooksListTemplate from './views/books-list.js'
 import BOOKS from './data/data.js'
 import createBookTemplate from './views/book.js'
+import createEditFormTemplate from './views/edit.js'
 
 const PORT = 3000
 const app = express()
@@ -55,6 +56,14 @@ app.delete('/books/:id', (req, res) => {
   }
 
   return res.send(``)
+})
+
+app.get('/books/edit/:id', (req, res) => {
+  const { id } = req.params
+
+  const book = BOOKS.find((book) => book.id === id)
+
+  return res.send(createEditFormTemplate(book))
 })
 
 app.listen(PORT, () => {
